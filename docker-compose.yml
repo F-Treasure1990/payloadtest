@@ -9,6 +9,8 @@ services:
       - node_modules:/home/node/app/node_modules
     working_dir: /home/node/app/
     command: sh -c "yarn install && yarn dev"
+    environment:
+      DATABASE_URI: postgres://admin:example@postgres/payload
     depends_on:
       - postgres
     env_file:
