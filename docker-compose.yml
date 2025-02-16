@@ -3,7 +3,7 @@ services:
   payload:
     image: node:18-alpine
     ports:
-      - '3001:3001'
+      - '3000:3000'
     volumes:
       - .:/home/node/app
       - node_modules:/home/node/app/node_modules
@@ -15,9 +15,12 @@ services:
       - .env
   postgres:
     restart: always
+    container_name: payloaddb
     image: postgres:latest
     environment:
       POSTGRES_PASSWORD: example
+      POSTGRES_USER: admin
+      POSTGRES_DB: payload
     volumes:
       - pgdata:/var/lib/postgresql/data
     ports:
